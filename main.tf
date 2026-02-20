@@ -20,7 +20,7 @@ resource "aws_key_pair" "mykey" {
 resource "aws_vpc" "myec2" {
     ami = "ami-051a31ab2f4d498f5"
     instance_type = "t3.micro"
-    key-pair = aws_key_pair.mykey.key_name
+    key_pair = aws_key_pair.mykey.key_name
     associate_public_ip_address = true
     vpc_security_group_ids = [aws_security_group.mysecgrp.id]
     tags = {
