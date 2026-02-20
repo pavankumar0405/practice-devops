@@ -10,7 +10,7 @@ resource "aws_vpc_security_group_ingress_rule" "myingressrule" {
     security_group_id = aws_security_group.mysecgrp.id
     from_port = 22
     to_port = 22
-    instance_typeprotocol = "tcp"
+    ip_protocol = "tcp"
     cidr_ipv4 = "0.0.0.0/0"
 }
 resource "aws_key_pair" "mykey" {
