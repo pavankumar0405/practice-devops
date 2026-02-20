@@ -15,7 +15,7 @@ resource "aws_vpc_security_group_ingress_rule" "myingressrule" {
 }
 resource "aws_key_pair" "mykey" {
     key_name = "pkkey"
-    public_key = file("~/.ssh/id_ed25519.pub")
+    public_key = file("/Users/dhara/.ssh/id_ed25519.pub")
 }
 resource "aws_instance" "myec2" {
     ami = "ami-019715e0d74f695be"
