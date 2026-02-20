@@ -17,8 +17,15 @@ resource "aws_key_pair" "mykey" {
     key_name = "pkkey"
     public_key = file("~/id_ed25519.pub")
 }
+data "aws_ami" "mymachine" {
+    filter {
+        name = "name"
+        values = [ "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20251212"]
+    }
+    owners = ["099720109477"]
+}
 resource "aws_instance" "myec2" {
-    ami = "ami-019715e0d74f695be"
+    ami = data.aws_ami.mymachine.id
     instance_type = "t3.micro"
     key_name = aws_key_pair.mykey.key_name
     associate_public_ip_address = true
