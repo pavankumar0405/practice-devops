@@ -7,7 +7,7 @@ resource "aws_security_group" "mysecgrp" {
     vpc_id = data.aws_vpc.myvpc1.id
 }
 resource "aws_vpc_security_group_ingress_rule" "myingressrule" {
-    security_group_id = aws_security_group.myopen.id
+    security_group_id = aws_security_group.mysecgrp.id
     from_port = 22
     to_port = 22
     protocol = "tcp"
@@ -20,7 +20,7 @@ resource "aws_key_pair" "mykey" {
 resource "aws_vpc" "myec2" {
     ami = "ami-051a31ab2f4d498f5"
     instance_type = "t3.micro"
-    key_pair = aws_key_pair.mykey.key_name
+    key_name = aws_key_pair.mykey.key_name
     associate_public_ip_address = true
     vpc_security_group_ids = [aws_security_group.mysecgrp.id]
     tags = {
